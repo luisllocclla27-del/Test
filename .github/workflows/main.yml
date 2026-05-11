@@ -14,4 +14,4 @@ jobs:
         run: pip install pytest pytest-cov
       - name: Ejecutar Pruebas y Validar Cobertura (80%)
         # El flag --cov-fail-under asegura que el proceso falle si no llegas al mínimo [cite: 615, 635]
-        run: python -m pytest --cov=pagos --cov-fail-under=80
+        run: cd "Labo5 PACS" && python -m pytest --cov=pagos --cov-fail-under=80
