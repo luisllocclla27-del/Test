@@ -1,17 +1,18 @@
 name: CI de Pruebas Unitarias
-[cite_start]on: [push, pull_request] # Se dispara al subir código [cite: 630]
+on: [push, pull_request]
 
 jobs:
   python-tests:
     runs-on: ubuntu-latest
     steps:
-      - [cite_start]uses: actions/checkout@v4 # Descarga tu código [cite: 604]
+      - uses: actions/checkout@v4
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
-          [cite_start]python-version: '3.10' # Versión estable [cite: 609]
+          python-version: '3.10'
       - name: Instalar dependencias
-        run: pip install pytest pytest-cov
-      - name: Ejecutar Pruebas y Validar Cobertura (80%)
-        # El flag --cov-fail-under asegura que el proceso falle si no llegas al mínimo [cite: 615, 635]
-        run: cd "Labo5 PACS" && python -m pytest --cov=pagos --cov-fail-under=80
+        run: |
+          pip install pytest pytest-cov
+      - name: Ejecutar Pruebas y Validar Cobertura
+        # Este comando busca los archivos en cualquier subcarpeta automáticamente
+        run: python -m pytest --cov=. --cov-fail-under=80
